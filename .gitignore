@@ -1,0 +1,7 @@
+Debug
+Release
+*.c~
+*.cci
+*.cfg
+*.fct
+*.txt
