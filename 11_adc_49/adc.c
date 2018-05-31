@@ -2,61 +2,63 @@
 #include <delay.h>
 #include <stdio.h>
 #asm
-.equ __lcd_port=0x15 ;         // PORTC
+.equ __lcd_port=0x1B;       // PORTA
 #endasm
 #include <lcd.h>
 
-#define ADC_VREF_TYPE   0x00
+#define ADC_VREF_TYPE   0x40    // AVCC를 기준 전압으로 사용
 char sbuf[16];              // LCD 출력할 문자
 
 void MPUinit(void)
 {
-    DDRA=0xff;  PORTA=0xff;     // 포트A : 적외선 LED 
-    DDRC=0xff;  PORTC=0xff;     // 포트C : LCD 
-    DDRF=0x00; PORTF = 0x00;    // 포트F : (A/D 입력)
+    PORTA=0xff; DDRA=0xff;  // PORTA : LCD 
+    PORTC=0xff; DDRC=0xff;  // PORTC : 적외선 LED 
+    PORTE=0x00; DDRE=0xff;  // PORTE : 일반 LED출력
+    PORTF=0x00; DDRF=0x00;  // PORTF : (A/D 입력)
     // ADC initialization
-    ADMUX=ADC_VREF_TYPE;        // 0x00: AREF를 기준 전압으로 사용
+    ADMUX=ADC_VREF_TYPE;
 	ADCSRA=0x86; 		        // 64분주 , 250kHz
-	lcd_init(16); 		        // LCD module initialization
 }
 
-unsigned int read_adc(unsigned char adc_input) //----- A/D 변환 후 결과 출력 함수 ----
-{
-	ADMUX=adc_input|ADC_VREF_TYPE; 
-	ADCSRA|=0x40;	                // Start the AD conversion				
-	while ((ADCSRA & 0x10)==0); 	// Wait for the AD conversion to complete
-	ADCSRA|=0x10; 
-	return ADCW;    // (int)ADCL + ((int)ADCH << 8);
-}
-
-void ReadSensor(int* adcout) //---- 라인 감지 A/D변환 처리 함수 ----------
+void ReadAdc(int* adc_out) //---- 라인 감지 A/D변환 처리 함수 ----------
 {
     unsigned char fire = 0x01;
-    int i;
+    int i=0;
     for(i=0; i<4; i++)
     {
-        PORTA = fire;
-        fire <<= 1;
+        PORTC = 0xfe;
         delay_us(30);
-        adcout[i] = read_adc(3);
-        PORTA = 0x00;
-        delay_us(1000);
+        
+        ADMUX = ADC_VREF_TYPE|i; 
+        ADCSRA |= 0x40;	                // Start the AD conversion
+        while((ADCSRA & 0x10)==0); 	// Wait for the AD conversion to complete
+//        ADCSRA|=0x10;
+        adc_out[i] = ADCW; //(int)ADCL + ((int)ADCH << 8);
+        PORTC = 0xff;
+
+        fire <<= 1;
+        delay_ms(1);
     }
 }
 
 void main(void)
 {
-    int AData[4];   // A/D변환된 센서값이 저장될 변수
+    int AData[4] = {0,0,0,0};   // A/D 변환된 센서값이 저장될 변수
     MPUinit();
+    lcd_init(16);
+    
     while (1)
     {
-        ReadSensor(AData); 		// 라인 감지 A/D변환 처리
-        sprintf(sbuf,"%03d, %03d", AData[0], AData[1]); 	// 3번 센서 A/D변환값 표시
+        ReadAdc(AData); 		// 라인 감지 A/D변환 처리
+        
+        sprintf(sbuf,"%4d, %4d", AData[0], AData[1]); 	// 0,1번 센서 A/D변환값 표시
         lcd_gotoxy(0,0);	
         lcd_puts(sbuf);
-        sprintf(sbuf,"%03d, %03d", AData[2], AData[3]); 	// 3번 센서 A/D변환값 표시
-        lcd_gotoxy(1,0);	
+        delay_ms(1);
+        
+        sprintf(sbuf,"%4d, %4d", AData[2], AData[3]); 	// 2,3번 센서 A/D변환값 표시
+        lcd_gotoxy(0,1);	
         lcd_puts(sbuf);
+        delay_ms(20);
     };
 }
-
