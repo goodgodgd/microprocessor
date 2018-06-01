@@ -8,7 +8,7 @@ read -p "Press [enter] to continue"
 
 echo -e "\nStep2: download hellomcu.c and built it"
 mkdir src || (rm -r src; mkdir src)
-wget https://raw.githubusercontent.com/goodgodgd/microprocessor/master/hellomcu/hellomcu.c -O src/hellomcu.c
+wget https://raw.githubusercontent.com/goodgodgd/microprocessor/master/bash_examples/hellomcu.c -O src/hellomcu.c
 gcc -o src/hellomcu src/hellomcu.c
 chmod u+x src/hellomcu
 read -p "Press [enter] to continue"
