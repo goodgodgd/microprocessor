@@ -21,7 +21,7 @@ OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Link
 AllowDisplayFunctionCallTree=1
 CleanUp=2
-TimeStamp1=1282190350
+TimeStamp1=1315198645
 [CompilerDebug]
 Chip=ATmega128
 CPUClock=16000000
@@ -126,8 +126,8 @@ UseEEPROMLocation0=1
 DisplayCodeSizeError=1
 RebuildAll=0
 LinkageInformationPresent=1
-COFFileTimeStamp=1282191161
-Build=5
+COFFileTimeStamp=1315198755
+Build=6
 GlobalVarAddr=1280
 EEPROMVarAddr=0
 [DefinedSymbolsDebug]
@@ -237,7 +237,7 @@ DisplayCodeSizeError=1
 RebuildAll=1
 LinkageInformationPresent=0
 COFFileTimeStamp=-1
-Build=5
+Build=6
 [DefinedSymbols]
 Count=0
 [CompilerAdvanced]
@@ -275,7 +275,7 @@ RunUserProg=0
 ProgrammChip=0
 MergeROMFile=0
 ROMFilePath=
-SCKFrequency=0
+SCKFrequency=100000
 LockBits=0
 BootLockBits0=0
 BootLockBits1=0
@@ -353,7 +353,7 @@ L13=Enhanced function parameters passing: Mode 2
 L14=Automatic register allocation: Yes
 L15=Smart register allocation: Yes
 L16=
-L17=Build: 4
+L17=Build: 5
 L18=1101 line(s) compiled
 L19=No errors
 L20=No warnings
@@ -379,7 +379,7 @@ Lines=37
 L1=AVRASM: AVR macro assembler 2.1.30 (build 592 Nov  7 2008 12:38:17)
 L2=Copyright (C) 1995-2008 ATMEL Corporation
 L3=
-L4=E:\Work\microprocessor\04_LED_1\Debug\List\led1.asm(1258): No EEPROM data, deleting E:\Work\microprocessor\04_LED_1\Debug\Exe\led1.eep
+L4=D:\Work\microprocessor\04_LED_01\Debug\List\led1.asm(1258): No EEPROM data, deleting D:\Work\microprocessor\04_LED_01\Debug\Exe\led1.eep
 L5=
 L6=ATmega128 memory use summary [bytes]:
 L7=Segment   Begin    End      Code   Data   Used    Size   Use%
@@ -394,16 +394,16 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1282191430
+TimeStamp=1318476778
 [BookmarksFoldedCode]
 Files=1
 F1=led1.c
 [Bookmarks1]
-TimeStamp=1282190350
+TimeStamp=1315198645
 Row=12
-Column=10
+Column=76
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=3
 BK0=-1
 BK1=-1
 BK2=-1
@@ -416,7 +416,7 @@ BK8=-1
 BK9=-1
 [HeadersList]
 Files=1
-F1=E:\Work\microprocessor\04_LED_1\led1.c
+F1=D:\Work\microprocessor\04_LED_01\led1.c
 [Header1]
 Files=3
 F1=C:\cvavreval\inc\mega128.h

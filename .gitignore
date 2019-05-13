@@ -5,3 +5,5 @@ Release
 *.cfg
 *.fct
 *.txt
+*.cof
+*.vcxproj.*
