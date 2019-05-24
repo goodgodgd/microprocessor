@@ -21,7 +21,7 @@ OutputExecutableFilesDirectory=Release\Exe
 OutputLinkerFilesDirectory=Release\Link
 AllowDisplayFunctionCallTree=1
 CleanUp=2
-TimeStamp1=1285785135
+TimeStamp1=1315198645
 OF2=adc.c
 TimeStamp2=1285784267
 [CompilerDebug]
@@ -397,11 +397,11 @@ Files=2
 F1=adc.c
 F2=..\11_adc_49\adc.c
 [Bookmarks1]
-TimeStamp=1285785135
-Row=35
-Column=57
+TimeStamp=1315198645
+Row=8
+Column=21
 ScrollPosX=0
-ScrollPosY=0
+ScrollPosY=3
 BK0=-1
 BK1=-1
 BK2=-1
@@ -417,7 +417,7 @@ Row=0
 Column=0
 ScrollPosX=0
 ScrollPosY=0
-TimeStamp=1285785861
+TimeStamp=1320715028
 [Bookmarks2]
 TimeStamp=1285783716
 Row=29
