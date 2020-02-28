@@ -7,3 +7,4 @@ Release
 *.txt
 *.cof
 *.vcxproj.*
+.vs
