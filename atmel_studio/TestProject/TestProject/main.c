@@ -4,13 +4,12 @@
 
 int main(void)
 {
-	DDRA |= 0x01;
+	DDRE |= 0x01;
 	while(1)
 	{
-		
-		PORTA |= 0x01;
+		PORTE |= 0x01;
 		_delay_ms(500);
-		PORTA &= ~0x01;
+		PORTE &= ~0x01;
 		_delay_ms(500);
 	}
 	return 0;
