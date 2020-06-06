@@ -36,7 +36,8 @@ unsigned char read_switch(unsigned char sw_id)
 	if(sw_bef > 0 && sw_cur == 0)
 	{
 		_delay_ms(10);
-		sw_cur = PORTC & (1 << sw_id);
+		sw_cur = PINC & (1 << sw_id);
+		sw_bef = sw_cur;
 		if(sw_cur == 0)
 			return 1;
 	}

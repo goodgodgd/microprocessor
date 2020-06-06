@@ -7,12 +7,6 @@
 #define  PRESCALER 1024		// 분주비
 uint8_t MODE = 4;			// LCD 4-bit mode
 
-void Timer_init(void)
-{
-	// 16비트 타이머 1번 타이머/카운터 분주비를 1024로 설정
-	TCCR1B |= (1 << CS12) | (1 << CS10);
-}
-
 int measure_distance(void)
 {
 	// 트리거 핀으로 펄스 출력
@@ -54,7 +48,8 @@ int main(void)
 	DDRC |= 0x02;			// PC1, 트리거 핀 출력으로 설정
 	DDRC &= 0xFE;			// PC0, 에코 핀 입력으로 설정
 	LCD_init();				// LCD 초기화
-	Timer_init();			// 1번 타이머/카운터 활성화
+	// 타이머 1번 타이머/카운터, normal 모드, 분주비 1024
+	TCCR1B |= (1 << CS12) | (1 << CS10);
 	
 	while(1)
 	{
