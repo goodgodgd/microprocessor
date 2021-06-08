@@ -16,9 +16,7 @@ int main(void)
 	// 분주비 64: CS3X(2~0): 011
 	TCCR3B |= (1 << WGM32) | (1 << CS31) | (1 << CS30);
 	OCR3B = 0;
-	
-    while (1) 
-    {
+    while (1) {
 		if(read_switch(0))
 			control_motor(0.7f, 1);
 		if(read_switch(1))
@@ -31,17 +29,19 @@ int main(void)
 
 unsigned char read_switch(unsigned char sw_id)
 {
-	static unsigned char sw_bef = 1;
+	static unsigned char pin_bef = 0xff;
+	unsigned char sw_bef = pin_bef & (1 << sw_id);
 	unsigned char sw_cur = PINC & (1 << sw_id);
+	// 이전 스위치 값을 비트 단위로 저장
+	pin_bef = (pin_bef & ~(1 << sw_id)) | sw_cur;
+	
 	if(sw_bef > 0 && sw_cur == 0)
 	{
 		_delay_ms(10);
 		sw_cur = PINC & (1 << sw_id);
-		sw_bef = sw_cur;
 		if(sw_cur == 0)
-			return 1;
+		return 1;
 	}
-	sw_bef = sw_cur;
 	return 0;
 }
 

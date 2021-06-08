@@ -22,8 +22,7 @@ int read_ADC(void)
 	return ADC;				// 10비트 값을 반환
 }
 
-void print_LCD(int adc, int distance)
-{
+void print_LCD(int adc, int distance) {
 	static char data[10];
 	LCD_clear();
 	LCD_goto_XY(0, 0);
@@ -34,13 +33,11 @@ void print_LCD(int adc, int distance)
 	LCD_write_string(data);
 }
 
-int main(void)
-{
+int main(void) {
 	int adc, distance;
 	LCD_init();				// LCD 초기화
-	ADC_init(2);			// AD 변환기 초기화. 채널 2 사용	
-	while (1)
-	{
+	ADC_init(0);			// AD 변환기 초기화. 채널 0 사용	
+	while (1) {
 		adc = read_ADC();	// ADC 값 읽기
 		if(adc <= 17)
 			distance = -1;
@@ -49,6 +46,6 @@ int main(void)
 		print_LCD(adc, distance);
 		_delay_ms(1000);			// 1초에 한 번 읽음
 	}
-
 	return 0;
 }
+
