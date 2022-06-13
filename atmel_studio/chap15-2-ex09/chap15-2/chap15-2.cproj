@@ -12,9 +12,9 @@
     <OutputFileName>$(MSBuildProjectName)</OutputFileName>
     <OutputFileExtension>.elf</OutputFileExtension>
     <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
-    <AssemblyName>chap30-1</AssemblyName>
-    <Name>chap30-1</Name>
-    <RootNamespace>chap30-1</RootNamespace>
+    <AssemblyName>chap15-2</AssemblyName>
+    <Name>chap15-2</Name>
+    <RootNamespace>chap15-2</RootNamespace>
     <ToolchainFlavour>Native</ToolchainFlavour>
     <KeepTimersRunning>true</KeepTimersRunning>
     <OverrideVtor>false</OverrideVtor>
